@@ -3,6 +3,7 @@
 /wordpress
 /theme/js/*.*
 /dist
+/db/*.sql
 package-lock.json
 composer.lock
 script.min.js
