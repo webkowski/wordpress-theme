@@ -58,6 +58,7 @@ if ( ! function_exists( 'sbktwn_entry_footer' ) ) :
 	 */
 	function sbktwn_entry_footer() {
 		// Hide category and tag text for pages.
+    printf('<div class="text-sm text-center py-2 text-slate-400 flex justify-end gap-2">');
 		if ( 'post' === get_post_type() ) {
 			/* translators: used between list items, there is a space after the comma */
 			$categories_list = get_the_category_list( esc_html__( ', ', 'sbktwn' ) );
@@ -109,6 +110,8 @@ if ( ! function_exists( 'sbktwn_entry_footer' ) ) :
 			'<span>',
 			'</span>'
 		);
+
+    printf('</div>');
 	}
 endif;
 
@@ -122,33 +125,41 @@ if ( ! function_exists( 'sbktwn_post_thumbnail' ) ) :
 	function sbktwn_post_thumbnail() {
 		if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 			return;
-		}
-
-		if ( is_singular() ) :
+		}?>
+      
+    <div class="flex justify-center">
+      
+      <?php
+		    if ( is_singular() ) :
 			?>
 
-			<div>
-				<?php the_post_thumbnail(); ?>
-			</div>
+        <div>
+          <?php the_post_thumbnail(); ?>
+        </div>
 
-		<?php else : ?>
+		  <?php else : ?>
 
-			<a href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
-				<?php
-					the_post_thumbnail(
-						'post-thumbnail',
-						array(
-							'alt' => the_title_attribute(
-								array(
-									'echo' => false,
-								)
-							),
-						)
-					);
-				?>
-			</a>
+			  <a href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
+          <img src="https://fakeimg.pl/1200x900/000000,10/000,5/">
+          <!-- <img src="https://fakeimg.pl/900x1200/000000,10/000,5/" class="max-h-[75vh] "> -->
+          <?php
+            // the_post_thumbnail(
+            // 	'post-thumbnail',
+            // 	array(
+            // 		'alt' => the_title_attribute(
+            // 			array(
+            // 				'echo' => false,
+            // 			)
+            // 		),
+            // 	)
+            // );
+          ?>
+			  </a>
 
 			<?php
-		endif; // End is_singular().
+		    endif; // End is_singular().
+      ?>
+    </div>
+    <?php
 	}
 endif;

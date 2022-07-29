@@ -24,6 +24,6 @@
 
 <div id="page" class="flex flex-col h-screen">
   
-	<!-- <a href="#primary"><?php esc_html_e( 'Skip to content', 'sbktwn' ); ?></a> -->
+	<a href="#primary" class="hidden"><?php esc_html_e( 'Skip to content', 'sbktwn' ); ?></a>
 
 	<?php get_template_part( 'template-parts/layout/header', 'content' ); ?>

@@ -14,7 +14,19 @@ module.exports = {
 	theme: {
 		// Extend the default Tailwind theme.
 		extend: {
-
+      container: {
+        center: true,
+        padding: '2rem',
+        screens: {
+          xl: "1200px"
+       }
+      },
+      aspectRatio: {
+        '4/3': '4 / 3',
+      },
+      fontFamily: {
+        'sans': ['Helvetica', 'Arial', 'sans-serif'],
+      }
 		},
 	},
 	corePlugins: {

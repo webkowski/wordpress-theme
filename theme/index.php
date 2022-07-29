@@ -15,7 +15,7 @@
 get_header();
 ?>
 
-	<main id="primary">
+	<main id="primary" class="container py-[10vh]">
 
 		<?php
 		if ( have_posts() ) :
