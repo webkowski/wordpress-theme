@@ -1,5 +1,12 @@
 {
+  "name": "wordpress-theme",
+  "version": "1.0.0",
+  "author": "WEBKOWSKI",
+  "license": "MIT",
 	"private": true,
+  "engines" : { 
+    "node" : ">=16.16.0"
+  },
 	"devDependencies": {
 		"@_tw/themejson": "^0.1.2",
 		"@angular-eslint/template-parser": "^13.5.0",
