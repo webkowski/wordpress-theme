@@ -10,7 +10,7 @@
 get_header();
 ?>
 
-	<main id="primary">
+	<main id="primary" class="container md:px-8 ">
 
 		<?php
 		while ( have_posts() ) :
@@ -18,22 +18,14 @@ get_header();
 
 			get_template_part( 'template-parts/content/content', get_post_type() );
 
-			the_post_navigation(
-				array(
-					'prev_text' => '<span>' . esc_html__( 'Previous:', 'sbktwn' ) . '</span> <span>%title</span>',
-					'next_text' => '<span>' . esc_html__( 'Next:', 'sbktwn' ) . '</span> <span>%title</span>',
-				)
-			);
-
-			// If comments are open or we have at least one comment, load up the comment template.
 			if ( comments_open() || get_comments_number() ) :
-				comments_template();
+				// comments_template();
 			endif;
 
-		endwhile; // End of the loop.
+		endwhile;
 		?>
 
-	</main><!-- #main -->
+	</main>
 
 <?php
 get_sidebar();
