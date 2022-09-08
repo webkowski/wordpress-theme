@@ -336,27 +336,33 @@ function sbktwn_has_gallery($post_id = false) {
  }
 
 function sbktwn_previous_post_link () {
- $prev_post = get_adjacent_post(false, '', true);
-if(!empty($prev_post)) {
-echo '<a href="' . get_permalink($prev_post->ID) . '" title="' . $prev_post->post_title . '" class="border border-solid w-6 h-6 flex justify-center items-center">&laquo;</a>'; }
+  $prev_post = get_adjacent_post(false, '', true);
+  if (!empty($prev_post)) {
+    echo '<a href="' . get_permalink($prev_post->ID) . '" title="' . $prev_post->post_title . '" class="border border-solid w-6 h-6 flex justify-center items-center">&laquo;</a>';
+  }
 }
 
 function sbktwn_next_post_link () {
   $next_post = get_adjacent_post(false, '', false);
- if(!empty($next_post)) {
- echo '<a href="' . get_permalink($next_post->ID) . '" title="' . $next_post->post_title . '" class="border border-solid w-6 h-6 flex justify-center items-center">&raquo;</a>'; }
+  if (!empty($next_post)) {
+    echo '<a href="' . get_permalink($next_post->ID) . '" title="' . $next_post->post_title . '" class="border border-solid w-6 h-6 flex justify-center items-center">&raquo;</a>';
+  }
  }
 
- add_action('the_content','ravs_content_div');
- function ravs_content_div( $content ){
+function sbktwn_content_div( $content ) {
   return '<div class="text-slate-400 text-sm text-left mt-2 px-1 md:px-0">'.$content.'</div>';
- }
-
- function strip_gallery ($content) {
-
-  return $content;
-  //return preg_replace ( '/\[gallery(.*?)\]/s' , '' , $content);
 }
+add_action('the_content','sbktwn_content_div');
+
+function dump($var) {
+  echo '<pre>';
+  var_dump($var);
+  echo '</pre>';
+}
+// function strip_gallery ($content) {
+//   return $content;
+//   //return preg_replace ( '/\[gallery(.*?)\]/s' , '' , $content);
+// }
 
 
-  add_action('the_content', 'strip_gallery', 10);
+//   add_action('the_content', 'strip_gallery', 10);
