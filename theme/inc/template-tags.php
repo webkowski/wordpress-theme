@@ -122,23 +122,33 @@ if ( ! function_exists( 'sbktwn_post_thumbnail' ) ) :
 	}
 endif;
 
-function sbktwn_remove_blocks() {
-  if ( ( is_single() || is_page() ) && in_the_loop() && is_main_query() ) {
-    //parse the blocks so they can be run through the foreach loop
-    $blocks = parse_blocks( get_the_content() );
-    foreach ( $blocks as $block ) {
-      //look to see if your block is in the post content -> if yes continue past it if no then render block as normal
-      if ( 'core/gallery' === $block['blockName'] ) {
-        //continue;
-        echo '';
-      } else {
-        //echo '';
-        echo render_block( $block );
-      }
-    }
+// function sbktwn_remove_blocks() {
+//   if ( ( is_single() || is_page() ) && in_the_loop() && is_main_query() ) {
+//     //parse the blocks so they can be run through the foreach loop
+//     $blocks = parse_blocks( get_the_content() );
+//     foreach ( $blocks as $block ) {
+//       //look to see if your block is in the post content -> if yes continue past it if no then render block as normal
+//       if ( 'core/gallery' === $block['blockName'] ) {
+//         continue;
+//         //echo '';
+//       } else {
+//         //echo '';
+//         echo render_block( $block );
+//       }
+//     }
+//   }
+// }
+//add_filter( 'the_content', 'sbktwn_remove_blocks');
+
+function sbktwn_filter_block_gallery($block_content, $block, $instance) {
+  if($block['blockName'] === 'core/gallery') {
+    return '';
+  } else {
+    return $block_content;
   }
 }
-add_filter( 'the_content', 'sbktwn_remove_blocks');
+
+add_filter('render_block', 'sbktwn_filter_block_gallery', 10, 3);
 
 if ( ! function_exists( 'sbktwn_post_images' ) ) :
 
