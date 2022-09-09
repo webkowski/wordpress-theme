@@ -52,7 +52,8 @@
 		"production": "run-p production:*",
 		"prod": "npm run production",
 		"zip": "node scripts/zip.js sbktwn",
-		"bundle": "run-s production zip"
+    "copy": "cp -r theme/* dist/",
+		"bundle": "run-s production copy"
 	},
 	"dependencies": {
 		"@splidejs/splide": "^4.0.7"

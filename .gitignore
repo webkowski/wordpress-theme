@@ -11,4 +11,5 @@ style.css
 style-editor.css
 .DS_Store
 .env
-
+.idea
+.htaccess
