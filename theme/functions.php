@@ -347,7 +347,7 @@ function sbktwn_next_post_link () {
  }
 
 function sbktwn_content_div( $content ) {
-  return '<div class="text-slate-400 text-sm text-left mt-2 px-1 md:px-0">'.$content.'</div>';
+  return '<div class="text-slate-400 text-sm text-left mt-2 px-1 md:px-0 max-w-[1000px] md:pr-[200px]">'.$content.'</div>';
 }
 add_action('the_content','sbktwn_content_div');
 
