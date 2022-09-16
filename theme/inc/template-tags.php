@@ -107,7 +107,7 @@ if ( ! function_exists( 'sbktwn_post_thumbnail' ) ) :
 		if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 			return;
 		}
-    
+
     the_post_thumbnail(
       'full',
       array(
@@ -150,34 +150,49 @@ function sbktwn_filter_block_gallery($block_content, $block, $instance) {
 
 add_filter('render_block', 'sbktwn_filter_block_gallery', 10, 3);
 
+function sbktwn_filter_images($content){
+	return preg_replace('/<img[^>]+./','',$content);
+}
+
 if ( ! function_exists( 'sbktwn_post_images' ) ) :
 
   function sbktwn_post_images( $post ) {
-		if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
-			return;
+	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
+		return;
     }
+
+	$image_ids = [];
+	if (has_post_thumbnail()){
+	  $image_ids[] = get_post_thumbnail_id( $post->ID );
+  	}
 
     $gallery = get_post_gallery($post, false);
+	if ($gallery) {
+		$image_ids = array_merge($image_ids, explode( ",", $gallery['ids'] ));
+	}
 
-    if (has_post_thumbnail() && !$gallery) {
+
+	$inline_images = sbktwn_extract_post_images($post);
+	if ($inline_images) {
+		add_filter('the_content', 'sbktwn_filter_images');
+		$image_ids = array_merge($image_ids, $inline_images);
+	}
+
+
+    if (has_post_thumbnail() && !$gallery && !$inline_images) {
       sbktwn_post_thumbnail();
-    }
-
-    if (has_post_thumbnail() && $gallery) {
-      $post_thumbnail_id = get_post_thumbnail_id($post->ID);
-      $gids = explode( ",", $gallery['ids'] );
-      array_unshift($gids, $post_thumbnail_id);
+    } else {
       $post_images = [];
-      
-      foreach( $gids as $id ) {
+
+      foreach( $image_ids as $id ) {
         $image = [];
         $image['id'] = $id;
         $image['url'] = wp_get_attachment_url( $id );
         $image['meta'] = wp_get_attachment_metadata( $id );
-        array_push($post_images, $image);
+        $post_images[] = $image;
       }
       ?>
-        <section class="" aria-label="Splide Basic HTML Example">
+        <section>
           <div class="splide__track">
             <ul class="splide__list">
               <?php foreach($post_images as $image) { ?>

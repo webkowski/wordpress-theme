@@ -9,7 +9,7 @@
 
 ?>
 <?php
-  $gallery = get_post_gallery($post, false);;
+  $gallery = get_post_gallery($post, false) || preg_match_all('/<img (.+?)>/', $post->post_content, $matches);
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(($gallery ? 'splide' : '') .' w-fill mt-10 md:mt-0 md:h-[calc(100vh_-_88px)] mb-20 md:mt-[40px] md:mb-[40px] flex items-center'); ?>>
   <div>
@@ -26,7 +26,7 @@
               else :
                 the_title( '<h2 class="text-slate-400 text-sm text-left leading-none"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
               endif;
-		          
+
               if ( 'post' === get_post_type() ) :
 			          sbktwn_posted_on();
               endif;
