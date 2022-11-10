@@ -56,3 +56,15 @@ $(post-content-selector) {
 .entry-content > .alignfull {
 	@apply max-w-none;
 }
+
+.splide__pagination__page.is-active {
+  @apply bg-slate-400 scale-100;
+}
+
+article p {
+  @apply inline;
+}
+
+.single article p {
+  @apply block;
+}

@@ -3,18 +3,24 @@ const includePreflight = ( 'editor' === process.env._TW_TARGET ) ? false : true;
 
 module.exports = {
 	presets: [
-		// Manage Tailwind Typography's configuration in a separate file.
 		require( './tailwind-typography.config.js' ),
 	],
 	content: [
-		// Ensure changes to PHP files and `theme.json` trigger a rebuild.
 		'./theme/**/*.php',
 		'./theme/theme.json',
 	],
 	theme: {
-		// Extend the default Tailwind theme.
 		extend: {
-
+      container: {
+        center: true,
+        screens: {}
+      },
+      aspectRatio: {
+        '4/3': '4 / 3',
+      },
+      fontFamily: {
+        'sans': ['Helvetica', 'Arial', 'sans-serif'],
+      },
 		},
 	},
 	corePlugins: {

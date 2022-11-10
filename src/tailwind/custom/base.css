@@ -11,6 +11,8 @@
  * `theme.json` file and is applied both to the frontend and in the block
  * editor.
 */
+@import '@splidejs/splide/dist/css/splide.min.css';
+
 body {
 	@apply bg-background font-sans text-foreground;
 }

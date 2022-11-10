@@ -1,12 +1,12 @@
 {
-  "name": "wordpress-theme",
-  "version": "1.0.0",
-  "author": "WEBKOWSKI",
-  "license": "MIT",
+	"name": "wordpress-theme",
+	"version": "1.0.0",
+	"author": "WEBKOWSKI",
+	"license": "MIT",
 	"private": true,
-  "engines" : { 
-    "node" : ">=16.16.0"
-  },
+	"engines": {
+		"node": ">=16.16.0"
+	},
 	"devDependencies": {
 		"@_tw/themejson": "^0.1.2",
 		"@angular-eslint/template-parser": "^13.5.0",
@@ -39,7 +39,7 @@
 		"watch:frontend": "npm run development:frontend -- --watch",
 		"watch:esbuild": "npm run development:esbuild -- --watch",
 		"watch": "run-p watch:*",
-    "watch:browser-sync": "browser-sync start --proxy localhost:8080 --files theme/ --no-notify --no-inject-changes",
+		"watch:browser-sync": "browser-sync start --proxy localhost:8080 --files theme/ --no-notify --no-inject-changes",
 		"lint:eslint": "npx eslint src/",
 		"lint-fix:eslint": "npx eslint src/ --fix",
 		"lint:prettier": "npx prettier --check src/tailwind/**/*.css",
@@ -52,6 +52,10 @@
 		"production": "run-p production:*",
 		"prod": "npm run production",
 		"zip": "node scripts/zip.js sbktwn",
-		"bundle": "run-s production zip"
+    "copy": "cp -r theme/* dist/",
+		"bundle": "run-s production copy"
+	},
+	"dependencies": {
+		"@splidejs/splide": "^4.0.7"
 	}
 }
